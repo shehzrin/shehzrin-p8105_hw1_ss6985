@@ -71,3 +71,14 @@ This does not work since factors need to be converted to numeric if you want to 
 ```{r}
 mean(homework1_df %>% pull (vec_factor))
 ```
+
+### Converting variables from one type to another 
+```{r, eval = FALSE}
+converted_vec_logical = as.numeric(homework1_df$vec_logical)
+converted_vec_char = as.numeric(homework1_df$vec_char)
+converted_vec_factor = as.numeric(homework1_df$vec_factor)
+```
+
+The **logical** values are converted to numerical values (1 and 0). Logical values are treated as numeric (TRUE becomes 1 and FALSE becomes 0), so taking the mean is straightforward. 
+The **character** variable conversion produces a warning (i.e., NAs introduced by coercion). I assume characters cannot be converted to numeric values without some more information, explaining why calculating the mean of a character vector results in NA (there is no numeric data to average). 
+Conversion to numeric works by translating **factor** levels to integers (explains why you can calculate the mean of factors if converted to numeric). However, the mean of these integer codes might not be meaningful in a categorical context.
