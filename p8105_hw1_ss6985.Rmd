@@ -38,3 +38,15 @@ ggsave("flipper_vs_bill_scatterplot.png", width = 6, height = 4)
 
 
 ## Problem 2: 
+
+### Creating a data frame
+```{r df_create}
+homework1_df = 
+  tibble(
+    norm_samp = rnorm(10),
+    vec_logical = norm_samp > 0,
+    vec_char = c("A", "B", "C", "D", "E","F", "G", "H", "I", "J"),
+    vec_factor = factor (rep(c("Low", "Medium", "High"), length.out = 10))
+  )
+print(homework1_df)
+```
