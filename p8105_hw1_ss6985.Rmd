@@ -28,4 +28,13 @@ The 'penguins' dataset contains data about different penguin species. It contain
 The dataset has a total of `r nrow(penguins)` rows and `r ncol(penguins)` columns. The mean flipper length of the penguins is `r round(mean(penguins$flipper_length_mm, na.rm = TRUE), 2)`mm.
 
 
+### Making a Scatterplot 
+
+```{r yx_scatter}
+ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + 
+  geom_point()
+ggsave("flipper_vs_bill_scatterplot.png", width = 6, height = 4)
+```
+
+
 ## Problem 2: 
