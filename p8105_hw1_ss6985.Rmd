@@ -28,7 +28,7 @@ The 'penguins' dataset contains data about different penguin species. It contain
 The dataset has a total of `r nrow(penguins)` rows and `r ncol(penguins)` columns. The mean flipper length of the penguins is `r round(mean(penguins$flipper_length_mm, na.rm = TRUE), 2)`mm.
 
 
-### Making a Scatterplot 
+### Making a scatterplot using the penguins dataset
 
 ```{r yx_scatter}
 ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + 
@@ -39,7 +39,7 @@ ggsave("flipper_vs_bill_scatterplot.png", width = 6, height = 4)
 
 ## Problem 2: 
 
-### Creating a data frame
+### Creating a dataframe
 ```{r df_create}
 homework1_df = 
   tibble(
@@ -49,4 +49,25 @@ homework1_df =
     vec_factor = factor (rep(c("Low", "Medium", "High"), length.out = 10))
   )
 print(homework1_df)
+```
+
+### Taking the mean of each variable in the dataframe
+This works and provides the mean of the numeric vector.
+```{r}
+mean(homework1_df %>% pull (norm_samp))  
+```
+
+This works since the logical vector is treated as numeric (TRUE = 1 and FALSE = 0). 
+```{r}
+mean(homework1_df %>% pull (vec_logical))
+```
+
+This does not work since characters cannot be averaged. 
+```{r}
+mean(homework1_df %>% pull (vec_char))
+```
+
+This does not work since factors need to be converted to numeric if you want to take their mean.
+```{r}
+mean(homework1_df %>% pull (vec_factor))
 ```
