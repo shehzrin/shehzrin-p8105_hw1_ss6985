@@ -3,10 +3,29 @@ title: "P8105 Homework 1"
 output: github_document
 ---
 
-Problem 1
+```{r, echo = FALSE, message = FALSE}
+library(tidyverse)
+```
 
+## Problem 1: 
+
+### Loading the penguin dataset 
 ```{r}
 data("penguins", package = "palmerpenguins")
 ```
 
-Problem 2
+### Description of the penguins dataset 
+The 'penguins' dataset contains data about different penguin species. It contains data on `r nrow(penguins)` penguins, with `r ncol(penguins)` variables that provide measurements and characteristics of penguins. The dataset includes the variables
+**species** (the type of penguin (Adelie, Chinstrap, or Gentoo)),
+**island** (the island where the penguins were observed (Torgersen, Biscoe, or Dream)),
+**bill_length_mm** (the length of the penguin's bill in millimeters),
+**bill_depth_mm** (the depth of the penguin's bill in millimeters),
+**flipper_length_mm** (the length of the penguin's flippers in millimeters),
+**body_mass_g** (the penguin's body mass in grams),
+**sex** (the sex of the penguin (male or female)), and
+**year** (the year in which the penguins were observed).
+
+The dataset has a total of `r nrow(penguins)` rows and `r ncol(penguins)` columns. The mean flipper length of the penguins is `r round(mean(penguins$flipper_length_mm, na.rm = TRUE), 2)`mm.
+
+
+## Problem 2: 
