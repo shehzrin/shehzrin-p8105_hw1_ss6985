@@ -5,4 +5,8 @@ output: github_document
 
 Problem 1
 
+```{r}
+data("penguins", package = "palmerpenguins")
+```
+
 Problem 2
