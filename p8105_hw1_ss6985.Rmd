@@ -3,7 +3,7 @@ title: "P8105 Homework 1"
 output: github_document
 ---
 
-```{r, echo = FALSE, message = FALSE}
+```{r setup, echo = FALSE, message = FALSE}
 library(tidyverse)
 ```
 
@@ -29,7 +29,6 @@ The dataset has a total of `r nrow(penguins)` rows and `r ncol(penguins)` column
 
 
 ### Making a scatterplot using the penguins dataset
-
 ```{r yx_scatter}
 ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + 
   geom_point()
@@ -46,7 +45,7 @@ homework1_df =
     norm_samp = rnorm(10),
     vec_logical = norm_samp > 0,
     vec_char = c("A", "B", "C", "D", "E","F", "G", "H", "I", "J"),
-    vec_factor = factor (rep(c("Low", "Medium", "High"), length.out = 10))
+    vec_factor = factor(c("low", "medium", "high", "low", "medium", "high", "low", "medium", "high", "low"))
   )
 print(homework1_df)
 ```
@@ -54,22 +53,22 @@ print(homework1_df)
 ### Taking the mean of each variable in the dataframe
 This works and provides the mean of the numeric vector.
 ```{r}
-mean(homework1_df %>% pull (norm_samp))  
+mean(pull(homework1_df, norm_samp))
 ```
 
 This works since the logical vector is treated as numeric (TRUE = 1 and FALSE = 0). 
 ```{r}
-mean(homework1_df %>% pull (vec_logical))
+mean(pull(homework1_df, vec_logical))
 ```
 
-This does not work since characters cannot be averaged. 
+This does not work since characters cannot be averaged (returns NA). 
 ```{r}
-mean(homework1_df %>% pull (vec_char))
+mean(pull(homework1_df, vec_char))
 ```
 
-This does not work since factors need to be converted to numeric if you want to take their mean.
+This does not work since factors need to be converted to numeric if you want to take their mean (returns NA).
 ```{r}
-mean(homework1_df %>% pull (vec_factor))
+mean(pull(homework1_df, vec_factor))
 ```
 
 ### Converting variables from one type to another 
@@ -81,4 +80,4 @@ converted_vec_factor = as.numeric(homework1_df$vec_factor)
 
 The **logical** values are converted to numerical values (1 and 0). Logical values are treated as numeric (TRUE becomes 1 and FALSE becomes 0), so taking the mean is straightforward. 
 The **character** variable conversion produces a warning (i.e., NAs introduced by coercion). I assume characters cannot be converted to numeric values without some more information, explaining why calculating the mean of a character vector results in NA (there is no numeric data to average). 
-Conversion to numeric works by translating **factor** levels to integers (explains why you can calculate the mean of factors if converted to numeric). However, the mean of these integer codes might not be meaningful in a categorical context.
+Conversion to numeric works by translating **factor** levels (non-numeric levels at first) to integers (explains why you can calculate the mean of factors if converted to numeric). However, the mean of these integer codes might not be meaningful in a categorical context.
